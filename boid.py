@@ -4,21 +4,21 @@ from bird import Bird
 import random
 
 pygame.init()
-DISPLAY_WIDTH = 1200
-DISPLAY_HEIGHT = 800
+DISPLAY_WIDTH = 500
+DISPLAY_HEIGHT = 300
 SCREEN = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 BIRDS = 10
 
 pygame.display.set_caption('Boid Simulation')
-clock = pygame.time.Clock()
+clock = pygame.time.Clock() 
 
 entities = pygame.sprite.Group()
 
 for i in range(1,BIRDS+1):
     b = Bird(
-        position = (random.randint(0,DISPLAY_WIDTH),random.randint(0, DISPLAY_HEIGHT)),
-        velocity = (random.choice([-1,1])*random.randrange(1,5)),
-        size = 40,
+        position = (random.randint(100,DISPLAY_WIDTH),random.randint(100, DISPLAY_HEIGHT)),
+        velocity = random.randint(1,3),
+        size = 10,
         vision = 10
     )
     entities.add(b)
@@ -31,6 +31,6 @@ while True: # main game loop
             sys.exit()
     entities.update()
     entities.draw(SCREEN)
-    clock.tick(60)
+    clock.tick(30)
     pygame.display.update()
     
